@@ -1,0 +1,28 @@
+{
+    "name": "es2017-lambda-boilerplate",
+    "description": "An ES2017 boilerplate for AWS Lambda (Node.js 6.10)",
+    "version": "0.1.0",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.org/irvinlim/es2017-lambda-boilerplate"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.24.1",
+        "babel-plugin-add-header-comment": "^1.0.3",
+        "babel-plugin-array-includes": "^2.0.3",
+        "babel-plugin-transform-es2017-object-entries": "0.0.4",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-preset-es2016": "^6.24.1",
+        "babel-preset-es2017": "^6.24.1"
+    },
+    "scripts": {
+        "build": "npm run build:init && npm run build:js",
+        "build:init": "rm -rf dist && mkdir dist",
+        "build:js": "cd src && babel *.js **/*.js -d ../dist",
+        "build:install": "cp package.json dist/ && cd dist && npm install --production",
+        "package": "npm run build && npm run package:pack",
+        "package:pack": "rm -f artifact.zip && cd dist/ && zip -r ../artifact.zip *"
+    },
+    "dependencies": {}
+}

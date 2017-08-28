@@ -1,0 +1,19 @@
+{
+    "presets": ["es2017", "es2016"],
+    "plugins": [
+        [
+            "add-header-comment",
+            {
+                "header": [
+                    "NOTE: This code is transpiled from ES2017 using Babel.",
+                    "Instead of modifying this file directly, work with the source code instead and upload the transpiled output here."
+                ],
+                "commentLineStart": " * ",
+                "commentEnd": "\n "
+            }
+        ],
+        "transform-es2017-object-entries",
+        "transform-object-rest-spread",
+        "array-includes"
+    ]
+}
