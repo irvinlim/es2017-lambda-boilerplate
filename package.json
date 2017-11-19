@@ -17,7 +17,7 @@
         "babel-preset-es2017": "^6.24.1"
     },
     "scripts": {
-        "build": "npm run build:init && npm run build:js",
+        "build": "npm run build:init && npm run build:js && npm run build:install",
         "build:init": "rm -rf dist && mkdir dist",
         "build:js": "cd src && babel *.js **/*.js -d ../dist",
         "build:install": "cp package.json dist/ && cd dist && npm install --production",
