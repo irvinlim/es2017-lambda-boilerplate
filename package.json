@@ -19,7 +19,7 @@
     "scripts": {
         "build": "npm run build:init && npm run build:js && npm run build:install",
         "build:init": "rm -rf dist && mkdir dist",
-        "build:js": "cd src && babel *.js **/*.js -d ../dist",
+        "build:js": "cd src && babel . -d ../dist",
         "build:install": "cp package.json dist/ && cd dist && npm install --production",
         "package": "npm run build && npm run package:pack",
         "package:pack": "rm -f artifact.zip && cd dist/ && zip -r ../artifact.zip *"
