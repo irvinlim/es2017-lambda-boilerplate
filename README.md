@@ -9,19 +9,16 @@ This is a boilerplate for [AWS Lambda](https://aws.amazon.com/lambda/) Node.js 6
 
 This boilerplate adds support for the following most commonly used JavaScript features that are not natively supported on AWS Lambda:
 
-| ES2016/ES7 | Supported? |
-|:-----------|:----------:|
+| Feature | Supported? |
+|:--------|:----------:|
+| **ES2016/ES7** | |
 | [Exponentiation operator (`**`)](http://node.green/#ES2016-features-exponentiation------operator) | :white_check_mark: |
 | [`Array.prototype.includes`](http://node.green/#ES2016-features-Array-prototype-includes) | :white_check_mark: |
-
-| ES2017/ES8 | Supported? |
-|:-----------|:----------:|
+| **ES2017/ES8** | |
 | [`Object.values`](http://node.green/#ES2017-features-Object-static-methods-Object-values), [`Object.entries`](http://node.green/#ES2017-features-Object-static-methods-Object-entries) | :white_check_mark: |
 | [Trailing commas in function syntax](http://node.green/#ES2017-features-trailing-commas-in-function-syntax) | :white_check_mark: |
 | [`async`/`await`](http://node.green/#ES2017-features-async-functions) | :white_check_mark: |
-
-| ESNEXT | Supported? |
-|:-------|:----------:|
+| **ESNEXT** | |
 | [Object rest/spread properties](http://node.green/#ESNEXT-candidate--stage-3--object-rest-spread-properties) | :white_check_mark: |
 
 *Note: Only features which are not normally available on AWS Lambda Node.js 6.10.0 are listed. Most ES2015/ES6 features and earlier are supported.*
