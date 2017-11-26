@@ -32,7 +32,7 @@ function runTest(filename) {
             handler: 'utils/handler.handler',
             // Pass an event to the Lambda function.
             event: {
-                EndToEndTest: { Fixture: { ScriptPath: dockerFilePath } },
+                FunctionalTest: { Fixture: { ScriptPath: dockerFilePath } },
             },
         });
     } catch (err) {

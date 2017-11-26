@@ -2,7 +2,7 @@
 
 exports.handler = function(event, context, callback) {
     // Import fixture script based on Lambda event.
-    const fixtureScript = require(event.EndToEndTest.Fixture.ScriptPath);
+    const fixtureScript = require(event.FunctionalTest.Fixture.ScriptPath);
 
     // Run the function and get a result.
     let result;
