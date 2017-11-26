@@ -40,7 +40,11 @@ function runTest(filename) {
     }
 
     // Clean up the transpiled file.
-    fs.unlinkSync(writeFilePath);
+    try {
+        fs.unlinkSync(writeFilePath);
+    } catch (err) {
+        console.warn(`Could not unlink ${writeFilePath}: `, err.message);
+    }
 
     return result === true;
 }
