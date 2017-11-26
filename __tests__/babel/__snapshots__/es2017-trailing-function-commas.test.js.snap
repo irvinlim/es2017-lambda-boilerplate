@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Array() constructor declaration with function primitive 1`] = `
+"
+var arr = Array(function (a, b, c) {
+    return a + b + c;
+});"
+`;
+
+exports[`Array() constructor declaration with function primitive 2`] = `
+"
+var arr = Array((a, b, c) => {
+    return a + b + c;
+});"
+`;
+
+exports[`Array() constructor declaration with named function primitive 1`] = `
+"
+var arr = Array(function f(a, b, c) {
+    return a + b + c;
+});"
+`;
+
+exports[`IIFE 1`] = `
+"
+(function (a, b, c) {
+    return a + b + c;
+})();"
+`;
+
+exports[`IIFE call 1`] = `
+"
+(function f(a, b) {
+    return a + b;
+})(1, 2);"
+`;
+
+exports[`array primitive declaration with arrow function primitive 1`] = `
+"
+var arr = [(a, b, c) => {
+    return a + b + c;
+}];"
+`;
+
+exports[`array primitive declaration with function primitive 1`] = `
+"
+var arr = [function (a, b, c) {
+    return a + b + c;
+}];"
+`;
+
+exports[`array primitive declaration with named function primitive 1`] = `
+"
+var arr = [function f(a, b, c) {
+    return a + b + c;
+}];"
+`;
+
+exports[`arrow function IIFE 1`] = `
+"
+((a, b, c) => {
+    return a + b + c;
+})();"
+`;
+
+exports[`function call expression 1`] = `
+"
+function f(a, b) {
+    return a + b;
+}
+var x = f(1, 2);"
+`;
+
+exports[`named IIFE 1`] = `
+"
+(function f(a, b, c) {
+    return a + b + c;
+})();"
+`;
+
+exports[`named function 1`] = `
+"
+function f(a, b, c) {
+    return a + b + c;
+}"
+`;
+
+exports[`object primitive declaration with arrow function primitive 1`] = `
+"
+var arr = { x: (a, b, c) => {
+        return a + b + c;
+    } };"
+`;
+
+exports[`object primitive declaration with function primitive 1`] = `
+"
+var arr = { x: function (a, b, c) {
+        return a + b + c;
+    } };"
+`;
+
+exports[`object primitive declaration with named function primitive 1`] = `
+"
+var arr = { x: function f(a, b, c) {
+        return a + b + c;
+    } };"
+`;
+
+exports[`object primitive declaration with named function shorthand 1`] = `
+"
+var arr = { f(a, b, c) {
+        return a + b + c;
+    } };"
+`;
+
+exports[`variable assignment with arrow function primitive 1`] = `
+"
+var f = (a, b, c) => {
+    return a + b + c;
+};"
+`;
+
+exports[`variable assignment with function primitive 1`] = `
+"
+var f = function (a, b, c) {
+    return a + b + c;
+};"
+`;
