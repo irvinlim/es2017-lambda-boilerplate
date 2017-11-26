@@ -2,6 +2,7 @@ const babel = require('babel-core');
 const fs = require('fs');
 const dockerLambda = require('docker-lambda');
 const path = require('path');
+const rimraf = require('rimraf');
 
 function runTest(filename) {
     // Transform the input file.
@@ -40,11 +41,7 @@ function runTest(filename) {
     }
 
     // Clean up the transpiled file.
-    try {
-        fs.unlinkSync(writeFilePath);
-    } catch (err) {
-        console.warn(`Could not unlink ${writeFilePath}: `, err.message);
-    }
+    rimraf.sync(writeFileDir);
 
     return result === true;
 }
