@@ -43,7 +43,7 @@ function runTest(filename) {
     // Clean up the transpiled file.
     rimraf.sync(writeFileDir);
 
-    return result === true;
+    return result;
 }
 
 module.exports = runTest;
