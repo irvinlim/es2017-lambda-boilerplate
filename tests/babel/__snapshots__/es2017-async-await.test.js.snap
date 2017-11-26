@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`async arrow function 1`] = `
+"function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step(\\"next\\", value); }, function (err) { step(\\"throw\\", err); }); } } return step(\\"next\\"); }); }; }
+
+var f = (() => {
+    var _ref = _asyncToGenerator(function* () {
+        return true;
+    });
+
+    return function f() {
+        return _ref.apply(this, arguments);
+    };
+})();"
+`;
+
+exports[`async function expression 1`] = `
+"function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step(\\"next\\", value); }, function (err) { step(\\"throw\\", err); }); } } return step(\\"next\\"); }); }; }
+
+var f = (() => {
+    var _ref = _asyncToGenerator(function* () {
+        return true;
+    });
+
+    return function f() {
+        return _ref.apply(this, arguments);
+    };
+})();"
+`;
+
+exports[`async named function 1`] = `
+"let f = (() => {
+    var _ref = _asyncToGenerator(function* () {
+        return true;
+    });
+
+    return function f() {
+        return _ref.apply(this, arguments);
+    };
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step(\\"next\\", value); }, function (err) { step(\\"throw\\", err); }); } } return step(\\"next\\"); }); }; }"
+`;
+
+exports[`return await Promise 1`] = `
+"let f = (() => {
+    var _ref = _asyncToGenerator(function* () {
+        return yield Promise.resolve(1);
+    });
+
+    return function f() {
+        return _ref.apply(this, arguments);
+    };
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step(\\"next\\", value); }, function (err) { step(\\"throw\\", err); }); } } return step(\\"next\\"); }); }; }"
+`;
+
+exports[`return await function call 1`] = `
+"let f = (() => {
+    var _ref = _asyncToGenerator(function* () {
+        return yield g();
+    });
+
+    return function f() {
+        return _ref.apply(this, arguments);
+    };
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step(\\"next\\", value); }, function (err) { step(\\"throw\\", err); }); } } return step(\\"next\\"); }); }; }"
+`;
+
+exports[`return await primitive 1`] = `
+"let f = (() => {
+    var _ref = _asyncToGenerator(function* () {
+        return yield 123;
+    });
+
+    return function f() {
+        return _ref.apply(this, arguments);
+    };
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step(\\"next\\", value); }, function (err) { step(\\"throw\\", err); }); } } return step(\\"next\\"); }); }; }"
+`;
+
+exports[`variable assignment await Promise 1`] = `
+"let f = (() => {
+    var _ref = _asyncToGenerator(function* () {
+        var x = yield Promise.resolve(1);
+        return x;
+    });
+
+    return function f() {
+        return _ref.apply(this, arguments);
+    };
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step(\\"next\\", value); }, function (err) { step(\\"throw\\", err); }); } } return step(\\"next\\"); }); }; }"
+`;
+
+exports[`variable assignment await function call 1`] = `
+"let f = (() => {
+    var _ref = _asyncToGenerator(function* () {
+        var x = yield g();
+        return x;
+    });
+
+    return function f() {
+        return _ref.apply(this, arguments);
+    };
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step(\\"next\\", value); }, function (err) { step(\\"throw\\", err); }); } } return step(\\"next\\"); }); }; }"
+`;
+
+exports[`variable assignment await primitive 1`] = `
+"let f = (() => {
+    var _ref = _asyncToGenerator(function* () {
+        var x = yield 123;
+        return x;
+    });
+
+    return function f() {
+        return _ref.apply(this, arguments);
+    };
+})();
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step(\\"next\\", value); }, function (err) { step(\\"throw\\", err); }); } } return step(\\"next\\"); }); }; }"
+`;

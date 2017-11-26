@@ -1,7 +1,6 @@
 # ![es2017-lambda-boilerplate](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/docs/images/banner.png)
 
-[![GitHub](https://img.shields.io/github/release/irvinlim/es2017-lambda-boilerplate.svg?style=flat-square)](https://github.com/irvinlim/es2017-lambda-boilerplate/releases)
-[![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+[![Travis CI](https://img.shields.io/travis/irvinlim/es2017-lambda-boilerplate.svg?style=flat-square)](https://travis-ci.org/irvinlim/es2017-lambda-boilerplate) [![GitHub](https://img.shields.io/github/release/irvinlim/es2017-lambda-boilerplate.svg?style=flat-square)](https://github.com/irvinlim/es2017-lambda-boilerplate/releases) [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
 ## What is it?
 
@@ -9,19 +8,19 @@ This is a boilerplate for [AWS Lambda](https://aws.amazon.com/lambda/) Node.js 6
 
 This boilerplate adds support for the following most commonly used JavaScript features that are not natively supported on AWS Lambda:
 
-| Feature | Supported? |
-|:--------|:----------:|
-| **ES2016/ES7** | |
-| [Exponentiation operator (`**`)](http://node.green/#ES2016-features-exponentiation------operator) | :white_check_mark: |
-| [`Array.prototype.includes`](http://node.green/#ES2016-features-Array-prototype-includes) | :white_check_mark: |
-| **ES2017/ES8** | |
+| Feature                                                                                                                                                                                |     Supported?     |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------: |
+| **ES2016/ES7**                                                                                                                                                                         |                    |
+| [Exponentiation operator (`**`)](http://node.green/#ES2016-features-exponentiation------operator)                                                                                      | :white_check_mark: |
+| [`Array.prototype.includes`](http://node.green/#ES2016-features-Array-prototype-includes)                                                                                              | :white_check_mark: |
+| **ES2017/ES8**                                                                                                                                                                         |                    |
 | [`Object.values`](http://node.green/#ES2017-features-Object-static-methods-Object-values), [`Object.entries`](http://node.green/#ES2017-features-Object-static-methods-Object-entries) | :white_check_mark: |
-| [Trailing commas in function syntax](http://node.green/#ES2017-features-trailing-commas-in-function-syntax) | :white_check_mark: |
-| [`async`/`await`](http://node.green/#ES2017-features-async-functions) | :white_check_mark: |
-| **ESNEXT** | |
-| [Object rest/spread properties](http://node.green/#ESNEXT-candidate--stage-3--object-rest-spread-properties) | :white_check_mark: |
+| [Trailing commas in function syntax](http://node.green/#ES2017-features-trailing-commas-in-function-syntax)                                                                            | :white_check_mark: |
+| [`async`/`await`](http://node.green/#ES2017-features-async-functions)                                                                                                                  | :white_check_mark: |
+| **ESNEXT**                                                                                                                                                                             |                    |
+| [Object rest/spread properties](http://node.green/#ESNEXT-candidate--stage-3--object-rest-spread-properties)                                                                           | :white_check_mark: |
 
-*Note: Only features which are not normally available on AWS Lambda Node.js 6.10.0 are listed. Most ES2015/ES6 features and earlier are supported.*
+_Note: Only features which are not normally available on AWS Lambda Node.js 6.10.0 are listed. Most ES2015/ES6 features and earlier are supported._
 
 ## Usage
 
@@ -67,7 +66,7 @@ I was also bitten badly by the fact that placing a Lambda function in a VPC requ
 
 Not knowing that using the SDK requires Internet connectivity (I assumed that the SDK could call the IPv4 link-local address for the metadata server `http://169.254.169.254` for API calls, and thus required for it to be placed in a VPC), I was stuck for a good couple of hours to find out why my Lambda functions consistently hit the 30s timeout I had set.
 
-This boilerplate performs a quick Internet connectivity test (up to 1000ms) to help you guard and debug against this problem, terminating the execution instead of timing out only after the full duration of the Lambda execution time. 
+This boilerplate performs a quick Internet connectivity test (up to 1000ms) to help you guard and debug against this problem, terminating the execution instead of timing out only after the full duration of the Lambda execution time.
 
 Set the `INTERNET_CONNECTIVITY_TEST` constant to `true` in order to use this feature, otherwise it will not invoke the Internet connectivity test.
 

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`object literal 1`] = `
+"function _objectValues(obj) {
+  var values = [];
+  var keys = Object.keys(obj);
+
+  for (var k = 0; k < keys.length; ++k) values.push(obj[keys[k]]);
+
+  return values;
+}
+
+_objectValues({ a: 1, b: 2 });"
+`;
+
+exports[`object variable 1`] = `
+"function _objectValues(obj) {
+  var values = [];
+  var keys = Object.keys(obj);
+
+  for (var k = 0; k < keys.length; ++k) values.push(obj[keys[k]]);
+
+  return values;
+}
+
+var obj = { a: 1, b: 2 };_objectValues(obj);"
+`;
