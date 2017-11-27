@@ -1,10 +1,8 @@
 # es2017-lambda-boilerplate
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/irvinlim/es2017-lambda-boilerplate.svg)](https://greenkeeper.io/)
-
 ![es2017-lambda-boilerplate](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/docs/images/banner.png)
 
-[![Travis CI](https://img.shields.io/travis/irvinlim/es2017-lambda-boilerplate.svg?style=flat-square)](https://travis-ci.org/irvinlim/es2017-lambda-boilerplate) [![GitHub](https://img.shields.io/github/release/irvinlim/es2017-lambda-boilerplate.svg?style=flat-square)](https://github.com/irvinlim/es2017-lambda-boilerplate/releases) [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+[![Travis CI](https://img.shields.io/travis/irvinlim/es2017-lambda-boilerplate.svg)](https://travis-ci.org/irvinlim/es2017-lambda-boilerplate) [![Greenkeeper badge](https://badges.greenkeeper.io/irvinlim/es2017-lambda-boilerplate.svg)](https://greenkeeper.io/) [![GitHub](https://img.shields.io/github/release/irvinlim/es2017-lambda-boilerplate.svg)](https://github.com/irvinlim/es2017-lambda-boilerplate/releases) [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](http://opensource.org/licenses/MIT)
 
 This is a boilerplate for [AWS Lambda](https://aws.amazon.com/lambda/) Node.js 6.10.0 functions, which allows you to use the latest JavaScript [ES2017/ES8 features](https://hackernoon.com/es8-was-released-and-here-are-its-main-new-features-ee9c394adf66) within a Lambda function.
 
