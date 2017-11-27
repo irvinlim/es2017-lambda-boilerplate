@@ -5,8 +5,11 @@ exports[`object rest properties 1`] = `
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var x = { a: 1, b: 2 };var { a } = x,
-    rest = _objectWithoutProperties(x, [\\"a\\"]);console.log(rest.b);"
+var x = { a: 1, b: 2 };
+var a = x.a,
+    rest = _objectWithoutProperties(x, [\\"a\\"]);
+
+console.log(rest.b);"
 `;
 
 exports[`object spread properties 1`] = `
