@@ -41,5 +41,7 @@
         "test:build:install": "cp package.json test/dist/ && cd test/dist && npm install --production",
         "test:run": "jest test/"
     },
-    "dependencies": {}
+    "dependencies": {
+        "jsonrequest": "^4.2.3"
+    }
 }
