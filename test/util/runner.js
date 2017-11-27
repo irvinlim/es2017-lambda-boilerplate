@@ -1,6 +1,10 @@
-const dockerLambda = require('docker-lambda');
-const fs = require('fs');
-const path = require('path');
+import dockerLambda from 'docker-lambda';
+import dotenv from 'dotenv';
+import fs from 'fs';
+import path from 'path';
+
+// Read environment variables from .env file.
+dotenv.config();
 
 function run(event) {
     // Run the Lambda function.
@@ -13,6 +17,11 @@ function run(event) {
             taskDir: path.join(__dirname, '../dist'),
             // Pass an event to the Lambda function.
             event,
+            // Pass AWS credentials from environment.
+            addEnvVars: {
+                AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+                AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+            },
         });
     } catch (err) {
         // Throw errors back to test runner.
