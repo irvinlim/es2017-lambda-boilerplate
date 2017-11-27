@@ -6,6 +6,12 @@ node_js:
 - "6.10.0"
 before_install:
 - docker pull lambci/lambda:nodejs6.10
+- npm install -g npm@5
+- npm install -g greenkeeper-lockfile@1
+before_script: 
+- greenkeeper-lockfile-update
 script:
 - npm run spec
 - npm run test
+after_script: 
+- greenkeeper-lockfile-upload
