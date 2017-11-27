@@ -2,8 +2,6 @@
 
 [![Travis CI](https://img.shields.io/travis/irvinlim/es2017-lambda-boilerplate.svg?style=flat-square)](https://travis-ci.org/irvinlim/es2017-lambda-boilerplate) [![GitHub](https://img.shields.io/github/release/irvinlim/es2017-lambda-boilerplate.svg?style=flat-square)](https://github.com/irvinlim/es2017-lambda-boilerplate/releases) [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
-## What is it?
-
 This is a boilerplate for [AWS Lambda](https://aws.amazon.com/lambda/) Node.js 6.10.0 functions, which allows you to use the latest JavaScript [ES2017/ES8 features](https://hackernoon.com/es8-was-released-and-here-are-its-main-new-features-ee9c394adf66) within a Lambda function.
 
 This boilerplate adds support for the following most commonly used JavaScript features that are not natively supported on AWS Lambda:
@@ -24,9 +22,9 @@ _Note: Only features which are not normally available on AWS Lambda Node.js 6.10
 
 ## Usage
 
-Edit your Lambda function under `src/index.js`, and run:
+Edit your Lambda function under `src/main.js`, and run:
 
-```
+```js
 npm run package
 ```
 
@@ -34,11 +32,15 @@ This will create an `artifact.zip` file which you can upload to AWS Lambda.
 
 ## Testing
 
-### Test boilerplate
+You can run automated tests for your Lambda function inside of a Docker container using [docker-lambda](https://github.com/lambci/docker-lambda):
 
-_NOTE: Test boilerplate under development._
+```js
+npm run test
+```
 
-The boilerplate allows you to run automated tests using [docker-lambda](https://github.com/lambci/docker-lambda)
+The test runner used is [Jest](https://github.com/facebook/jest) (with [Jasmine](https://jasmine.github.io)). All files in the `test/` directory which end with `.test.js` will be interpreted as a test suite.
+
+This also requires Docker to be installed on your host; see the [docs for docker-lambda](https://github.com/lambci/docker-lambda) for more instructions.
 
 ### Specification tests
 
@@ -47,15 +49,17 @@ In order to ensure that the Babel configuration works and is following the spec,
 * **Functional testing**: Runs the relevant spec tests from [Test262](https://github.com/tc39/test262) (actual tests taken from [node.green](http://node.green/)) on [docker-lambda](https://github.com/lambci/docker-lambda) to mock the AWS Lambda environment
 * **Snapshot testing**: Unit testing strategy by storing snapshots of Babel-transformed source code and running unit tests against them
 
+You can find the spec tests under `spec/functional` and `spec/snapshot` respectively.
+
+If you are not going to modify `.babelrc`, you can choose to skip these tests by omitting the `npm run spec` script in `.travis.yml`. This will help to speed up your builds by a bit.
+
 ## Why?
 
 ### Latest ES2017 features
 
 Even though Lambda supposedly supports Node.js 6.10.0, not all JavaScript features are supported. [www.whatdoeslambdasupport.com](http://www.whatdoeslambdasupport.com/) has a comprehensive list of what is supported and what are not.
 
-If you are used to using features like `async`/`await` which have been around for a while now, you might find it tedious to build your own tooling to transpile all the latest ECMAScript features that you have been using all along.
-
-That's why I built this boilerplate - using `async`/`await` was really important to me when making use of the AWS SDK on Lambda, like as follows:
+This boilerplate adds support for the most commonly used features that are not available on Node 6.10.0 or AWS Lambda, such as `async`/`await` when used with the [AWS SDK](https://github.com/aws/aws-sdk-js):
 
 ```js
 const EC2 = new AWS.EC2();
@@ -73,21 +77,41 @@ await Route53.changeResourceRecordSets({
 }).promise();
 ```
 
-The usage of `async`/`await` reduces all the cruft involved when using either normal AWS SDK callbacks or chaining Promises.
+### Run automated tests locally/through CI
 
-### Internet connectivity handling
+Instead of testing your Lambda function by uploading to AWS Lambda every single time, running automated tests in conjunction with CI is a better option. By using Docker to mock the AWS Lambda environment locally, you can write test cases to verify the correctness of your function, given an input (the [Lambda event](http://docs.aws.amazon.com/lambda/latest/dg/eventsources.html)):
 
-I was also bitten badly by the fact that placing a Lambda function in a VPC requires a NAT gateway in order for the Lambda function to have outbound Internet connectivity, and I was trying to use the bundled AWS SDK to perform operations on the AWS API.
+```js
+import run from './util/runner';
 
-Not knowing that using the SDK requires Internet connectivity (I assumed that the SDK could call the IPv4 link-local address for the metadata server `http://169.254.169.254` for API calls, and thus required for it to be placed in a VPC), I was stuck for a good couple of hours to find out why my Lambda functions consistently hit the 30s timeout I had set.
+it('should work', function() {
+    // Sample event from SNS.
+    const event = {
+        Records: [
+            {
+                EventVersion: '1.0',
+                EventSource: 'aws:sns',
+                Sns: {
+                    MessageId: '95df01b4-ee98-5cb9-9903-4c221d41eb5e',
+                    Message: 'Hello from SNS!',
+                    ...
+                },
+            },
+        ],
+    };
 
-This boilerplate performs a quick Internet connectivity test (up to 1000ms) to help you guard and debug against this problem, terminating the execution instead of timing out only after the full duration of the Lambda execution time.
+    // Run the Lambda function against this event.
+    const result = run(event);
 
-Set the `INTERNET_CONNECTIVITY_TEST` constant to `true` in order to use this feature, otherwise it will not invoke the Internet connectivity test.
+    expect(result).toEqual(true);
+});
+```
+
+This strategy also does not utilise your AWS Lambda invocation credits - meaning you are free to run as many tests as often as you like!
 
 ## Acknowledgements
 
-This boilerplate was inspired from this [post](http://jessesnet.com/development-notes/2016/nodejs-es7-aws-lambda/) by Jesse Cascio.
+This boilerplate was first inspired from this [post](http://jessesnet.com/development-notes/2016/nodejs-es7-aws-lambda/) by Jesse Cascio.
 
 ## License
 
