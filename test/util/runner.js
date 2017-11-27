@@ -13,6 +13,8 @@ function run(event) {
     try {
         // Run the Lambda in Docker.
         result = dockerLambda({
+            // Use the Node.js 6.10.0 image.
+            dockerImage: 'lambci/lambda:nodejs6.10',
             // Bind the build directory as a volume to /var/task.
             taskDir: path.join(__dirname, '../dist'),
             // Pass an event to the Lambda function.
