@@ -32,6 +32,21 @@ npm run package
 
 This will create an `artifact.zip` file which you can upload to AWS Lambda.
 
+## Testing
+
+### Test boilerplate
+
+_NOTE: Test boilerplate under development._
+
+The boilerplate allows you to run automated tests using [docker-lambda](https://github.com/lambci/docker-lambda)
+
+### Specification tests
+
+In order to ensure that the Babel configuration works and is following the spec, the boilerplate also runs several automated tests to catch any Babel misconfigurations.
+
+* **Functional testing**: Runs the relevant spec tests from [Test262](https://github.com/tc39/test262) (actual tests taken from [node.green](http://node.green/)) on [docker-lambda](https://github.com/lambci/docker-lambda) to mock the AWS Lambda environment
+* **Snapshot testing**: Unit testing strategy by storing snapshots of Babel-transformed source code and running unit tests against them
+
 ## Why?
 
 ### Latest ES2017 features

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`object literal 1`] = `
-"function _objectEntries(obj) {
+"\\"use strict\\";
+
+function _objectEntries(obj) {
   var entries = [];
   var keys = Object.keys(obj);
 
@@ -14,7 +16,9 @@ _objectEntries({ a: 1, b: 2 });"
 `;
 
 exports[`object variable 1`] = `
-"function _objectEntries(obj) {
+"\\"use strict\\";
+
+function _objectEntries(obj) {
   var entries = [];
   var keys = Object.keys(obj);
 

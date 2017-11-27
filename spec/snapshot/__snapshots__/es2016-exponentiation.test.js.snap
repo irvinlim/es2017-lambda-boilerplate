@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`exponentiation assignment 1`] = `
+"\\"use strict\\";
+
+var x = 2;x = Math.pow(x, 10)"
+`;
+
+exports[`expression with primitives 1`] = `
+"\\"use strict\\";
+
+Math.pow(2, 10);"
+`;
+
+exports[`expression with variables 1`] = `
+"\\"use strict\\";
+
+var x = 2;var y = Math.pow(x, 10);"
+`;

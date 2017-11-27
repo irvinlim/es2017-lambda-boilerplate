@@ -1,5 +1,12 @@
 {
-    "presets": ["es2017", "es2016"],
+    "presets": [
+        [
+            "env",
+            {
+                "targets": { "node": "6.10.0" }
+            }
+        ]
+    ],
     "plugins": [
         [
             "add-header-comment",
@@ -14,6 +21,7 @@
         ],
         "transform-es2017-object-entries",
         "transform-object-rest-spread",
+        "transform-es2015-destructuring",
         "array-includes"
     ]
 }
