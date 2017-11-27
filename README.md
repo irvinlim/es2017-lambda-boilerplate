@@ -1,5 +1,7 @@
 # es2017-lambda-boilerplate
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/irvinlim/es2017-lambda-boilerplate.svg)](https://greenkeeper.io/)
+
 ![es2017-lambda-boilerplate](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/docs/images/banner.png)
 
 [![Travis CI](https://img.shields.io/travis/irvinlim/es2017-lambda-boilerplate.svg?style=flat-square)](https://travis-ci.org/irvinlim/es2017-lambda-boilerplate) [![GitHub](https://img.shields.io/github/release/irvinlim/es2017-lambda-boilerplate.svg?style=flat-square)](https://github.com/irvinlim/es2017-lambda-boilerplate/releases) [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)
