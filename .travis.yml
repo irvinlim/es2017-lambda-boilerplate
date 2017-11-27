@@ -6,3 +6,5 @@ node_js:
 - "6.10.0"
 before_install:
 - docker pull lambci/lambda
+script:
+- npm run spec

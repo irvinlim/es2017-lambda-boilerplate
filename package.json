@@ -27,15 +27,18 @@
         "testRegex": "\\.test\\.js$"
     },
     "scripts": {
-        "build": "npm run build:init && npm run build:js && npm run build:install",
+        "build":
+            "npm run build:init && npm run build:js && npm run build:install",
         "build:init": "rm -rf dist && mkdir dist",
         "build:js": "cd src && babel . -d ../dist",
-        "build:install": "cp package.json dist/ && cd dist && npm install --production",
+        "build:install":
+            "cp package.json dist/ && cd dist && npm install --production",
         "package": "npm run build && npm run package:pack",
-        "package:pack": "rm -f artifact.zip && cd dist/ && zip -r ../artifact.zip *",
-        "test": "npm run test:snapshot && npm run test:functional",
-        "test:snapshot": "jest tests/snapshot",
-        "test:functional": "jest tests/functional"
+        "package:pack":
+            "rm -f artifact.zip && cd dist/ && zip -r ../artifact.zip *",
+        "spec": "npm run spec:snapshot && npm run spec:functional",
+        "spec:snapshot": "jest spec/snapshot",
+        "spec:functional": "jest spec/functional"
     },
     "dependencies": {}
 }
