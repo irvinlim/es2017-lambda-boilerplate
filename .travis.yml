@@ -8,3 +8,4 @@ before_install:
 - docker pull lambci/lambda
 script:
 - npm run spec
+- npm run test

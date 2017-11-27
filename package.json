@@ -33,7 +33,15 @@
         "package:pack": "rm -f artifact.zip && cd dist/ && zip -r ../artifact.zip *",
         "spec": "npm run spec:snapshot && npm run spec:functional",
         "spec:snapshot": "jest spec/snapshot",
-        "spec:functional": "jest spec/functional"
+        "spec:functional": "jest spec/functional",
+        "test": "npm run test:build && npm run test:run",
+        "test:build": "npm run test:build:init && npm run test:build:js && npm run test:build:install",
+        "test:build:init": "cd test && npm run build:init",
+        "test:build:js": "cd src && babel . -d ../test/dist",
+        "test:build:install": "cp package.json test/dist/ && cd test/dist && npm install --production",
+        "test:run": "jest test/"
     },
-    "dependencies": {}
+    "dependencies": {
+        "jsonrequest": "^4.2.3"
+    }
 }
