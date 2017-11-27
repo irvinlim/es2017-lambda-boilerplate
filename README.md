@@ -1,4 +1,6 @@
-# ![es2017-lambda-boilerplate](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/docs/images/banner.png)
+# es2017-lambda-boilerplate
+
+![es2017-lambda-boilerplate](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/docs/images/banner.png)
 
 [![Travis CI](https://img.shields.io/travis/irvinlim/es2017-lambda-boilerplate.svg?style=flat-square)](https://travis-ci.org/irvinlim/es2017-lambda-boilerplate) [![GitHub](https://img.shields.io/github/release/irvinlim/es2017-lambda-boilerplate.svg?style=flat-square)](https://github.com/irvinlim/es2017-lambda-boilerplate/releases) [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
@@ -52,6 +54,14 @@ In order to ensure that the Babel configuration works and is following the spec,
 You can find the spec tests under `spec/functional` and `spec/snapshot` respectively.
 
 If you are not going to modify `.babelrc`, you can choose to skip these tests by omitting the `npm run spec` script in `.travis.yml`. This will help to speed up your builds by a bit.
+
+## Using the AWS SDK
+
+You can write Lambda functions that make use of the [AWS SDK](https://github.com/aws/aws-sdk-js) by simply `import`-ing `aws-sdk`. The package is installed globally within the AWS Lambda environment, so you don't need to add it to your `package.json`.
+
+Additionally, you can pass in the access keys for the AWS IAM user to be used during automated tests through the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables. This will work if you store it in a `.env` file in the root of the project (see [dotenv](https://github.com/motdotla/dotenv)), or if you define it within Travis CI itself (see [Travis docs](https://docs.travis-ci.com/user/environment-variables/)).
+
+Finally, make sure that your function has Internet connectivity (i.e. not within a VPC without a NAT gateway). The `internetConnectivityTest.js` utility is included to help to debug such problems early when deploying to AWS Lambda.
 
 ## Why?
 
