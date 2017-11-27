@@ -9,15 +9,16 @@ const path = filename => `es2016-array-includes/${filename}.js`;
 
 /**
  * @see http://node.green/#ES2016-features-Array-prototype-includes-Array-prototype-includes
- * @ignore babel-plugin-array-includes is not complete
+ * @ignore babel-plugin-array-includes is not fully spec-compliant (see https://github.com/tc39/Array.prototype.includes)
  */
 it('Array.prototype.includes');
 
 /**
  * @see http://node.green/#ES2016-features-Array-prototype-includes-Array-prototype-includes-is-generic
- * @ignore babel-plugin-array-includes is not complete
  */
-it('Array.prototype.includes is generic');
+it('Array.prototype.includes is generic', function() {
+    expect(runTest(path('generic'))).toEqual(true);
+});
 
 /**
  * @see http://node.green/#ES2016-features-Array-prototype-includes--TypedArray--prototype-includes

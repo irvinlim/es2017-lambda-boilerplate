@@ -5,7 +5,7 @@ language: node_js
 node_js:
 - "6.10.0"
 before_install:
-- docker pull lambci/lambda
+- docker pull lambci/lambda:nodejs6.10
 script:
 - npm run spec
 - npm run test
