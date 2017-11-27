@@ -1,5 +1,7 @@
+const asyncTestPassed = require('../../utils/async-test').asyncTestPassed;
+
 module.exports = function() {
-    (async function() {
+    return (async function() {
         await Promise.resolve();
         var e = await 'foo';
         if (e === 'foo') {

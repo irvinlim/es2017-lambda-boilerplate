@@ -1,5 +1,7 @@
+const asyncTestPassed = require('../../utils/async-test').asyncTestPassed;
+
 module.exports = function() {
-    (async function() {
+    return (async function() {
         await Promise.resolve();
         var a1 = await new Promise(function(resolve) {
             setTimeout(resolve, 800, 'foo');

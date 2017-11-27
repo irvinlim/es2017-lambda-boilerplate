@@ -1,3 +1,5 @@
+const asyncTestPassed = require('../../utils/async-test').asyncTestPassed;
+
 module.exports = function() {
     async function a() {
         return 'foo';
@@ -6,7 +8,7 @@ module.exports = function() {
     if (!(p instanceof Promise)) {
         return false;
     }
-    p.then(function(result) {
+    return p.then(function(result) {
         if (result === 'foo') {
             asyncTestPassed();
         }
