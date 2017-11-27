@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Array() constructor literal expression 1`] = `"Array(1, 2, 3).indexOf(1) !== -1;"`;
+exports[`Array() constructor literal expression 1`] = `
+"\\"use strict\\";
 
-exports[`array literal expression 1`] = `"[1, 2, 3].indexOf(1) !== -1;"`;
+Array(1, 2, 3).indexOf(1) !== -1;"
+`;
+
+exports[`array literal expression 1`] = `
+"\\"use strict\\";
+
+[1, 2, 3].indexOf(1) !== -1;"
+`;
