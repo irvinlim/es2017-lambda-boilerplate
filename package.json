@@ -8,6 +8,7 @@
         "url": "https://github.org/irvinlim/es2017-lambda-boilerplate"
     },
     "devDependencies": {
+        "aws-sdk": "^2.159.0",
         "babel-cli": "^6.24.1",
         "babel-core": "^6.26.0",
         "babel-plugin-add-header-comment": "^1.0.3",
@@ -16,8 +17,10 @@
         "babel-plugin-transform-es2017-object-entries": "0.0.4",
         "babel-plugin-transform-object-rest-spread": "^6.26.0",
         "babel-preset-env": "^1.6.1",
+        "colors": "^1.1.2",
         "docker-lambda": "^0.13.4",
         "dotenv": "^4.0.0",
+        "fs-extra": "^4.0.2",
         "jest": "^21.2.1",
         "rimraf": "^2.6.2"
     },
@@ -30,6 +33,8 @@
         "build:init": "rm -rf dist && mkdir dist",
         "build:js": "cd src && babel . -d ../dist",
         "build:install": "cp package.json dist/ && cd dist && npm install --production",
+        "deploy": "npm run package && npm run deploy:run",
+        "deploy:run": "babel-node ./bin/deploy.js",
         "package": "npm run build && npm run package:pack",
         "package:pack": "rm -f artifact.zip && cd dist/ && zip -r ../artifact.zip *",
         "spec": "npm run spec:snapshot && npm run spec:functional",
