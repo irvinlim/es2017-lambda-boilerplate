@@ -26,7 +26,7 @@ _Note: Only features which are not normally available on AWS Lambda Node.js 6.10
 
 Edit your Lambda function under `src/main.js`, and run:
 
-```js
+```sh
 npm run package
 ```
 
@@ -36,7 +36,7 @@ This will create an `artifact.zip` file which you can upload to AWS Lambda.
 
 You can run automated tests for your Lambda function inside of a Docker container using [docker-lambda](https://github.com/lambci/docker-lambda):
 
-```js
+```sh
 npm run test
 ```
 
@@ -55,13 +55,32 @@ You can find the spec tests under `spec/functional` and `spec/snapshot` respecti
 
 If you are not going to modify `.babelrc`, you can choose to skip these tests by omitting the `npm run spec` script in `.travis.yml`. This will help to speed up your builds by a bit.
 
+## Deployment
+
+You can automatically deploy to AWS Lambda locally or through CI (e.g. Travis), as long as you provide an access key for an IAM user that has write access to AWS Lambda.
+
+```sh
+npm run deploy
+```
+
+See [Environment variables](#environment-variables) for the list of environment variables that are required for deployment.
+
 ## Using the AWS SDK
 
 You can write Lambda functions that make use of the [AWS SDK](https://github.com/aws/aws-sdk-js) by simply `import`-ing `aws-sdk`. The package is installed globally within the AWS Lambda environment, so you don't need to add it to your `package.json`.
 
-Additionally, you can pass in the access keys for the AWS IAM user to be used during automated tests through the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables. This will work if you store it in a `.env` file in the root of the project (see [dotenv](https://github.com/motdotla/dotenv)), or if you define it within Travis CI itself (see [Travis docs](https://docs.travis-ci.com/user/environment-variables/)).
+Also make sure that your function has Internet connectivity (i.e. not within a VPC without a NAT gateway). The `internetConnectivityTest.js` utility is included to help to debug such problems early when deploying to AWS Lambda.
 
-Finally, make sure that your function has Internet connectivity (i.e. not within a VPC without a NAT gateway). The `internetConnectivityTest.js` utility is included to help to debug such problems early when deploying to AWS Lambda.
+## Environment variables
+
+The following environment variables are supported:
+
+* `AWS_ACCESS_KEY_ID`: IAM user access key ID
+* `AWS_SECRET_ACCESS_KEY`: IAM user secret access key
+* `AWS_REGION`: AWS region where the Lambda function resides in
+* `LAMBDA_FUNCTION_NAME`: Name or ARN of the Lambda function
+
+This will work if you store it in a `.env` file in the root of the project (see [dotenv](https://github.com/motdotla/dotenv)), or if you define it within Travis CI itself (see [Travis docs](https://docs.travis-ci.com/user/environment-variables/)).
 
 ## Why?
 
