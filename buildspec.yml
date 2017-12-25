@@ -3,7 +3,7 @@ phases:
   install:
     commands:
       - npm install
-      - npm run build
+      - npm run package
       - aws cloudformation package --template-file samTemplate.yml 
                                    --s3-bucket codepipeline-es2017-lambda-boilerplate
                                    --output-template-file template.yml
