@@ -6,8 +6,8 @@ phases:
       - npm run build
       - aws cloudformation package --template-file samTemplate.yml 
                                    --s3-bucket codepipeline-es2017-lambda-boilerplate
-                                   --output-template-file template.yaml
+                                   --output-template-file template.yml
 artifacts:
   type: zip
   files:
-    - template.yaml
+    - template.yml
