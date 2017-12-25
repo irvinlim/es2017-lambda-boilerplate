@@ -4,6 +4,7 @@ phases:
     commands:
       - npm install
       - npm run build
+      - aws s3 mb s3://codepipeline-es2017-lambda-boilerplate
       - aws cloudformation package --template-file samTemplate.yml 
                                    --s3-bucket codepipeline-es2017-lambda-boilerplate
                                    --output-template-file template.yaml
