@@ -1,0 +1,17 @@
+version: 0.1
+phases:
+  install:
+    commands:
+      - npm install
+  build:
+    commands:
+      - npm run package
+  post_build:
+    commands:
+      - aws cloudformation package --template-file samTemplate.yml 
+                                   --s3-bucket $S3_BUCKET
+                                   --output-template-file template.yml
+artifacts:
+  type: zip
+  files:
+    - template.yml
