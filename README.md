@@ -2,7 +2,7 @@
 
 ![es2017-lambda-boilerplate](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/docs/images/banner.png)
 
-[![Travis CI](https://img.shields.io/travis/irvinlim/es2017-lambda-boilerplate.svg)](https://travis-ci.org/irvinlim/es2017-lambda-boilerplate) [![Greenkeeper badge](https://badges.greenkeeper.io/irvinlim/es2017-lambda-boilerplate.svg)](https://greenkeeper.io/) [![GitHub](https://img.shields.io/github/release/irvinlim/es2017-lambda-boilerplate.svg)](https://github.com/irvinlim/es2017-lambda-boilerplate/releases) [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](http://opensource.org/licenses/MIT)
+[![Travis CI](https://img.shields.io/travis/irvinlim/es2017-lambda-boilerplate.svg)](https://travis-ci.org/irvinlim/es2017-lambda-boilerplate) ![](https://codebuild.ap-southeast-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiNlhFcld3M3VSMFM0MEkzUlBMQk1FdDU1c1RGc2dnVlpNaDdFZHlzSnQydDVJNm9RVFhxbXA3NkYxK3QwUVd4eVZyUTRiejZ1UGhRTFJYMTJJSzNLT2ZBPSIsIml2UGFyYW1ldGVyU3BlYyI6ImRFMWxLcHo2LzJmb3YycGEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/irvinlim/es2017-lambda-boilerplate.svg)](https://greenkeeper.io/) [![GitHub](https://img.shields.io/github/release/irvinlim/es2017-lambda-boilerplate.svg)](https://github.com/irvinlim/es2017-lambda-boilerplate/releases) [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](http://opensource.org/licenses/MIT)
 
 This is a boilerplate for [AWS Lambda](https://aws.amazon.com/lambda/) Node.js 6.10.0 functions, which allows you to use the latest JavaScript [ES2017/ES8 features](https://hackernoon.com/es8-was-released-and-here-are-its-main-new-features-ee9c394adf66) within a Lambda function.
 
@@ -57,13 +57,28 @@ If you are not going to modify `.babelrc`, you can choose to skip these tests by
 
 ## Deployment
 
-You can automatically deploy to AWS Lambda locally or through CI (e.g. Travis), as long as you provide an access key for an IAM user that has write access to AWS Lambda.
+### Deployment through AWS SDK
+
+You can automatically deploy to AWS Lambda locally or through CI (e.g. Travis) using the AWS SDK, as long as you provide an access key for an IAM user that has write access to AWS Lambda. A single NPM script allows you to deploy using this method:
 
 ```sh
 npm run deploy
 ```
 
 See [Environment variables](#environment-variables) for the list of environment variables that are required for deployment.
+
+### Deployment through CloudFormation + CodeBuild
+
+Instead of depending on external tools like Travis, you can also choose to use [AWS CloudFormation](https://aws.amazon.com/cloudformation/) to bootstrap the relevant AWS resources, integrated with [AWS CodeBuild](https://aws.amazon.com/codebuild/) and [AWS CodePipeline](https://aws.amazon.com/codepipeline/). Alternatively, deployment via [AWS CodeStar](https://aws.amazon.com/codestar/) might also be supported out of the box.
+
+To modify the build process, you can update the CodeBuild configuration file at [`buildspec.yml`](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/buildspec.yml), or to modify any Lambda properties, you can update the CloudFormation configuration file at [`samTemplate.yml`](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/samTemplate.yml).
+
+If you are new to AWS CI/CD tools, you can follow the official [AWS tutorial](http://docs.aws.amazon.com/lambda/latest/dg/build-pipeline.html) to set up a build pipeline using CodePipeline. Take note of the following:
+
+* Set up a S3 bucket for uploading CodeBuild artifacts to.
+  * If the CodeBuild build fails, you may need to set the `S3_BUCKET` environment variable within CodeBuild directly.
+* Ensure that the IAM roles have the necessary permissions to access required resources, including the S3 bucket.
+* The CloudFormation template filename under CodePipeline settings should be `template.yml`.
 
 ## Using the AWS SDK
 
