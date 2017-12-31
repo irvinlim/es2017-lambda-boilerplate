@@ -14,7 +14,7 @@ import request from 'jsonrequest';
  * @returns {*}             The return value will be passed to the caller.
  * @throws {Error}          If an Error is thrown, the Lambda will be considered failed; the error object will be passed to the caller.
  */
-const router = (event, context) => {
+export default (event, context) => {
     // Example router.
     switch (event.type) {
         case 'rest-api-example':
@@ -46,5 +46,3 @@ const awsSdkExample = async (data, context) => {
     // Sample EC2 call.
     return await EC2.describeInstances().promise();
 };
-
-module.exports = router;
