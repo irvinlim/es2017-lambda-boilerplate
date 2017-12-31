@@ -1,6 +1,5 @@
 import dockerLambda from 'docker-lambda';
 import dotenv from 'dotenv';
-import fs from 'fs';
 import path from 'path';
 
 // Read environment variables from .env file.
