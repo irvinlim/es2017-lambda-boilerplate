@@ -1,6 +1,6 @@
 /**
- * Main AWS Lambda function source code.
- * The following is written using ES2017/ES8, and should be transpiled to ES6 before uploading to AWS Lambda.
+ * Index for AWS Lambda function. The main source code should go under `main.js`.
+ * Generated with [es2017-lambda-boilerplate](https://github.com/irvinlim/es2017-lambda-boilerplate).
  */
 
 import internetConnectivityTest from './util/internetConnectivityTest';
