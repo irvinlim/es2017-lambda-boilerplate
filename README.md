@@ -4,9 +4,11 @@
 
 [![Travis CI](https://img.shields.io/travis/irvinlim/es2017-lambda-boilerplate.svg)](https://travis-ci.org/irvinlim/es2017-lambda-boilerplate) ![](https://codebuild.ap-southeast-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiNlhFcld3M3VSMFM0MEkzUlBMQk1FdDU1c1RGc2dnVlpNaDdFZHlzSnQydDVJNm9RVFhxbXA3NkYxK3QwUVd4eVZyUTRiejZ1UGhRTFJYMTJJSzNLT2ZBPSIsIml2UGFyYW1ldGVyU3BlYyI6ImRFMWxLcHo2LzJmb3YycGEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/irvinlim/es2017-lambda-boilerplate.svg)](https://greenkeeper.io/) [![GitHub](https://img.shields.io/github/release/irvinlim/es2017-lambda-boilerplate.svg)](https://github.com/irvinlim/es2017-lambda-boilerplate/releases) [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](http://opensource.org/licenses/MIT)
 
-This is a boilerplate for [AWS Lambda](https://aws.amazon.com/lambda/) Node.js 6.10.0 functions, which allows you to use the latest JavaScript [ES2017/ES8 features](https://hackernoon.com/es8-was-released-and-here-are-its-main-new-features-ee9c394adf66) within a Lambda function.
+This is a boilerplate for [AWS Lambda](https://aws.amazon.com/lambda/) Node.js 6.10.0 functions, which allows you to use the latest JavaScript [ES2017/ES8 features](https://hackernoon.com/es8-was-released-and-here-are-its-main-new-features-ee9c394adf66). The boilerplate also allows you to test your function in a Docker container (thanks to [docker-lambda](https://github.com/lambci/docker-lambda)), and also includes common configurations for CI/CD, for both [Travis CI](https://travis-ci.org/) and [AWS CodeBuild](https://aws.amazon.com/codebuild/) + [AWS CloudFormation](https://aws.amazon.com/cloudformation/).
 
-This boilerplate adds support for the following most commonly used JavaScript features that are not natively supported on AWS Lambda:
+## ES2017 features
+
+This boilerplate adds support for the following most commonly used JavaScript features that are not natively supported on Node.js 6.10:
 
 | Feature                                                                                                                                                                                |     Supported?     |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------: |
@@ -20,17 +22,23 @@ This boilerplate adds support for the following most commonly used JavaScript fe
 | **ESNEXT**                                                                                                                                                                             |                    |
 | [Object rest/spread properties](http://node.green/#ESNEXT-candidate--stage-3--object-rest-spread-properties)                                                                           | :white_check_mark: |
 
-_Note: Only features which are not normally available on AWS Lambda Node.js 6.10.0 are listed. Most ES2015/ES6 features and earlier are supported._
+_Note: Most ES2015/ES6 are earlier features are supported._
 
 ## Usage
 
 Edit your Lambda function under `src/main.js`, and run:
 
 ```sh
-npm run package
+npm run build
 ```
 
-This will create an `artifact.zip` file which you can upload to AWS Lambda.
+This will transpile your functions down to ES5 using Babel, so that it can be executed using the Node.js 6.10.0 runtime.
+
+For convenience, the following command will create an `artifact.zip` file which you can upload to AWS Lambda:
+
+```sh
+npm run package
+```
 
 ## Testing
 
@@ -40,9 +48,9 @@ You can run automated tests for your Lambda function inside of a Docker containe
 npm run test
 ```
 
-The test runner used is [Jest](https://github.com/facebook/jest) (with [Jasmine](https://jasmine.github.io)). All files in the `test/` directory which end with `.test.js` will be interpreted as a test suite.
+All files in the `test/` directory which end with `.test.js` will be interpreted as a test suite. A sample unit test is provided under [test/example.test.js](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/test/example.test.js) to get you started.
 
-This also requires Docker to be installed on your host; see the [docs for docker-lambda](https://github.com/lambci/docker-lambda) for more instructions.
+The test runner used is [Jest](https://github.com/facebook/jest) (with [Jasmine](https://jasmine.github.io)). Using docker-lambda also requires Docker to be installed on your host; see the [docs for docker-lambda](https://github.com/lambci/docker-lambda) for more instructions.
 
 ### Specification tests
 
@@ -57,21 +65,21 @@ If you are not going to modify `.babelrc`, you can choose to skip these tests by
 
 ## Deployment
 
-### Deployment through AWS SDK
+### Deployment using the AWS SDK
 
-You can automatically deploy to AWS Lambda locally or through CI (e.g. Travis) using the AWS SDK, as long as you provide an access key for an IAM user that has write access to AWS Lambda. A single NPM script allows you to deploy using this method:
+You can automatically deploy to AWS Lambda locally or through CI (e.g. Travis CI) using the AWS SDK, as long as you provide an access key for an IAM user that has write access to AWS Lambda. A single NPM script allows you to deploy using this method:
 
 ```sh
 npm run deploy
 ```
 
-See [Environment variables](#environment-variables) for the list of environment variables that are required for deployment.
+See [Environment variables](#environment-variables) for the list of environment variables that are required for SDK deployment.
 
 ### Deployment through CloudFormation + CodeBuild
 
-Instead of depending on external tools like Travis, you can also choose to use [AWS CloudFormation](https://aws.amazon.com/cloudformation/) to bootstrap the relevant AWS resources, integrated with [AWS CodeBuild](https://aws.amazon.com/codebuild/) and [AWS CodePipeline](https://aws.amazon.com/codepipeline/). Alternatively, deployment via [AWS CodeStar](https://aws.amazon.com/codestar/) might also be supported out of the box.
+Instead of depending on external tools like Travis CI, you can also choose to use [AWS CloudFormation](https://aws.amazon.com/cloudformation/) to bootstrap the relevant AWS resources, integrated with [AWS CodeBuild](https://aws.amazon.com/codebuild/) and [AWS CodePipeline](https://aws.amazon.com/codepipeline/). Alternatively, deployment via [AWS CodeStar](https://aws.amazon.com/codestar/) may also be supported out of the box.
 
-To modify the build process, you can update the CodeBuild configuration file at [`buildspec.yml`](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/buildspec.yml), or to modify any Lambda properties, you can update the CloudFormation configuration file at [`samTemplate.yml`](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/samTemplate.yml).
+To modify the build process, you can update the CodeBuild configuration file at [`buildspec.yml`](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/buildspec.yml). To modify the properties of the resultant Lambda function, you can update the CloudFormation configuration file at [`samTemplate.yml`](https://github.com/irvinlim/es2017-lambda-boilerplate/blob/master/samTemplate.yml).
 
 If you are new to AWS CI/CD tools, you can follow the official [AWS tutorial](http://docs.aws.amazon.com/lambda/latest/dg/build-pipeline.html) to set up a build pipeline using CodePipeline. Take note of the following:
 
@@ -86,24 +94,30 @@ You can write Lambda functions that make use of the [AWS SDK](https://github.com
 
 Also make sure that your function has Internet connectivity (i.e. not within a VPC without a NAT gateway). The `internetConnectivityTest.js` utility is included to help to debug such problems early when deploying to AWS Lambda.
 
-## Environment variables
+### Environment variables
 
-The following environment variables are supported:
+If you plan to use the AWS SDK, either for deployment (using `npm run deploy`), or within your function itself, you need to pass the following environment variables:
 
 * `AWS_ACCESS_KEY_ID`: IAM user access key ID
 * `AWS_SECRET_ACCESS_KEY`: IAM user secret access key
-* `AWS_REGION`: AWS region where the Lambda function resides in
-* `LAMBDA_FUNCTION_NAME`: Name or ARN of the Lambda function
+* `AWS_REGION`: AWS region where the Lambda function resides in (_required for SDK deployment only_)
+* `LAMBDA_FUNCTION_NAME`: Name or ARN of the Lambda function (_required for SDK deployment only_)
 
-This will work if you store it in a `.env` file in the root of the project (see [dotenv](https://github.com/motdotla/dotenv)), or if you define it within Travis CI itself (see [Travis docs](https://docs.travis-ci.com/user/environment-variables/)).
+This will work if you store it in a `.env` file in the root of the project (see [dotenv](https://github.com/motdotla/dotenv)), or if you define it within Travis CI itself (see [Travis CI docs](https://docs.travis-ci.com/user/environment-variables/)).
+
+### IAM user permissions
+
+The minimum permissions required for the IAM user for SDK deployment are:
+
+* [`lambda:UpdateFunctionCode`](https://docs.aws.amazon.com/lambda/latest/dg/API_UpdateFunctionCode.html)
+
+Remember to add more permissions as required if you need to access the SDK in your function.
 
 ## Why?
 
-### Latest ES2017 features
+### Latest ES2017/ES2016 features
 
-Even though Lambda supposedly supports Node.js 6.10.0, not all JavaScript features are supported. [www.whatdoeslambdasupport.com](http://www.whatdoeslambdasupport.com/) has a comprehensive list of what is supported and what are not.
-
-This boilerplate adds support for the most commonly used features that are not available on Node 6.10.0 or AWS Lambda, such as `async`/`await` when used with the [AWS SDK](https://github.com/aws/aws-sdk-js):
+The highest version of Node.js supported on AWS Lambda is 6.10.0, which supports only features up to ES2015/ES6. Newer features in ES2017, such as `async`/`await`, are incredibly useful when performing network requests, such as when used with the [AWS SDK](https://github.com/aws/aws-sdk-js):
 
 ```js
 const EC2 = new AWS.EC2();
