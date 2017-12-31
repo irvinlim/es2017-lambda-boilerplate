@@ -1,5 +1,8 @@
 /**
- * Simple script that deploys the zipped package to AWS Lambda.
+ * Simple script that deploys the zipped package to AWS Lambda using the AWS SDK.
+ *
+ * Alternatively, you can use AWS CodeBuild + AWS CloudFormation to deploy the
+ * function whenever you push to your repository.
  */
 
 import AWS from 'aws-sdk';

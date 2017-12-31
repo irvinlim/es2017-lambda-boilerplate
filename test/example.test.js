@@ -1,7 +1,6 @@
 /**
- * Example test using Jest/Jasmine.
- *
- * Use run() to run your Lambda function within docker-lambda.
+ * Example test using Jest/Jasmine. Run all tests using `npm run test`.
+ * Use run() to invoke your Lambda function within a Docker container with docker-lambda.
  */
 
 import run from './util/runner';
