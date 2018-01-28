@@ -19,6 +19,8 @@ function run(event) {
             // Pass an event to the Lambda function.
             event,
             // Pass AWS credentials from environment.
+            // NOTE: Jest needs the environment variable values explicitly,
+            // see https://github.com/facebook/jest/issues/5362.
             dockerArgs: [
                 '-e',
                 `AWS_ACCESS_KEY_ID=${process.env.AWS_ACCESS_KEY_ID}`,
