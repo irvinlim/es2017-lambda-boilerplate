@@ -1,4 +1,4 @@
-const { transform } = require('./__utils__');
+const { transform } = require('./utils');
 
 it('expression with primitives', () => {
     const code = transform('2 ** 10');

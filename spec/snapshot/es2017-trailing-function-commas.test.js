@@ -1,4 +1,4 @@
-const { transform } = require('./__utils__');
+const { transform } = require('./utils');
 
 // Trailing commas in function expression signature
 

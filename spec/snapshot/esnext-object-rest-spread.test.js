@@ -1,4 +1,4 @@
-const { transform } = require('./__utils__');
+const { transform } = require('./utils');
 
 it('object spread properties', () => {
     const code = transform('var x = { a: 1, b: 2 }; var y = { a: 3, ...x };');

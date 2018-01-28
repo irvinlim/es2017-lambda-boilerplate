@@ -1,4 +1,4 @@
-const { transform } = require('./__utils__');
+const { transform } = require('./utils');
 
 it('array literal expression', () => {
     const code = transform('[1, 2, 3].includes(1)');

@@ -1,4 +1,4 @@
-const { transform } = require('./__utils__');
+const { transform } = require('./utils');
 
 it('object literal', () => {
     const code = transform('Object.entries({ a: 1, b: 2 });');
