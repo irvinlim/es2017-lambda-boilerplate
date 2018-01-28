@@ -4,9 +4,9 @@
 
 [![Travis CI](https://img.shields.io/travis/irvinlim/es2017-lambda-boilerplate.svg)](https://travis-ci.org/irvinlim/es2017-lambda-boilerplate) ![](https://codebuild.ap-southeast-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiNlhFcld3M3VSMFM0MEkzUlBMQk1FdDU1c1RGc2dnVlpNaDdFZHlzSnQydDVJNm9RVFhxbXA3NkYxK3QwUVd4eVZyUTRiejZ1UGhRTFJYMTJJSzNLT2ZBPSIsIml2UGFyYW1ldGVyU3BlYyI6ImRFMWxLcHo2LzJmb3YycGEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master) [![David](https://img.shields.io/david/irvinlim/es2017-lambda-boilerplate.svg)](https://david-dm.org/irvinlim/es2017-lambda-boilerplate) [![David](https://img.shields.io/david/dev/irvinlim/es2017-lambda-boilerplate.svg)](https://david-dm.org/irvinlim/es2017-lambda-boilerplate?type=dev) [![Greenkeeper badge](https://badges.greenkeeper.io/irvinlim/es2017-lambda-boilerplate.svg)](https://greenkeeper.io/) [![GitHub](https://img.shields.io/github/release/irvinlim/es2017-lambda-boilerplate.svg)](https://github.com/irvinlim/es2017-lambda-boilerplate/releases) [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](http://opensource.org/licenses/MIT)
 
-This is a boilerplate for [AWS Lambda](https://aws.amazon.com/lambda/) Node.js 6.10.0 functions, which allows you to use the latest JavaScript [ES2017/ES8 features](https://hackernoon.com/es8-was-released-and-here-are-its-main-new-features-ee9c394adf66). The boilerplate also allows you to test your function in a Docker container (thanks to [docker-lambda](https://github.com/lambci/docker-lambda)), and also includes common configurations for CI/CD, for both [Travis CI](https://travis-ci.org/) and [AWS CodeBuild](https://aws.amazon.com/codebuild/) + [AWS CloudFormation](https://aws.amazon.com/cloudformation/).
+This is a boilerplate for [AWS Lambda](https://aws.amazon.com/lambda/) Node.js 6.10.0 functions, which allows you to use the latest JavaScript [ES2016](http://2ality.com/2016/01/ecmascript-2016.html), [ES2017](http://2ality.com/2016/02/ecmascript-2017.html) and [ES2018](http://2ality.com/2017/02/ecmascript-2018.html) features. The boilerplate also allows you to test your function in a Docker container (thanks to [docker-lambda](https://github.com/lambci/docker-lambda)), and also includes common configurations for CI/CD, for both [Travis CI](https://travis-ci.org/) and [AWS CodeBuild](https://aws.amazon.com/codebuild/) + [AWS CloudFormation](https://aws.amazon.com/cloudformation/).
 
-## ES2017 features
+## Latest JavaScript features
 
 This boilerplate adds support for the following most commonly used JavaScript features that are not natively supported on Node.js 6.10:
 
@@ -19,8 +19,8 @@ This boilerplate adds support for the following most commonly used JavaScript fe
 | [`Object.values`](http://node.green/#ES2017-features-Object-static-methods-Object-values), [`Object.entries`](http://node.green/#ES2017-features-Object-static-methods-Object-entries) | :white_check_mark: |
 | [Trailing commas in function syntax](http://node.green/#ES2017-features-trailing-commas-in-function-syntax)                                                                            | :white_check_mark: |
 | [`async`/`await`](http://node.green/#ES2017-features-async-functions)                                                                                                                  | :white_check_mark: |
-| **ESNEXT**                                                                                                                                                                             |                    |
-| [Object rest/spread properties](http://node.green/#ESNEXT-candidate--stage-3--object-rest-spread-properties)                                                                           | :white_check_mark: |
+| **ES2018/ES9**                                                                                                                                                                         |                    |
+| [Object rest/spread properties](http://node.green/#ES2018-features-object-rest-spread-properties)                                                                                      | :white_check_mark: |
 
 _Note: Most ES2015/ES6 are earlier features are supported._
 
@@ -84,7 +84,7 @@ To modify the build process, you can update the CodeBuild configuration file at 
 If you are new to AWS CI/CD tools, you can follow the official [AWS tutorial](http://docs.aws.amazon.com/lambda/latest/dg/build-pipeline.html) to set up a build pipeline using CodePipeline. Take note of the following:
 
 * Set up a S3 bucket for uploading CodeBuild artifacts to.
-  * If the CodeBuild build fails, you may need to set the `S3_BUCKET` environment variable within CodeBuild directly.
+    * If the CodeBuild build fails, you may need to set the `S3_BUCKET` environment variable within CodeBuild directly.
 * Ensure that the IAM roles have the necessary permissions to access required resources, including the S3 bucket.
 * The CloudFormation template filename under CodePipeline settings should be `template.yml`.
 
@@ -115,7 +115,7 @@ Remember to add more permissions as required if you need to access the SDK in yo
 
 ## Why?
 
-### Latest ES2017/ES2016 features
+### Reduce callback hell with `async`/`await`
 
 The highest version of Node.js supported on AWS Lambda is 6.10.0, which supports only features up to ES2015/ES6. Newer features in ES2017, such as `async`/`await`, are incredibly useful when performing network requests, such as when used with the [AWS SDK](https://github.com/aws/aws-sdk-js):
 

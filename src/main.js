@@ -21,6 +21,8 @@ export default (event, context) => {
             return restApiExample(event.data, context);
         case 'aws-sdk-example':
             return awsSdkExample(event.data, context);
+        case 'integration-test-example':
+            return integrationTestExample(event.data, context);
     }
 };
 
@@ -43,6 +45,36 @@ const restApiExample = async (data, context) => {
 const awsSdkExample = async (data, context) => {
     const EC2 = new AWS.EC2();
 
+    // return [
+    //     AWS.config.accessKeyId,
+    //     process.env.AWS_ACCESS_KEY_ID,
+    //     AWS.config.secretAccessKey,
+    //     process.env.AWS_SECRET_ACCESS_KEY,
+    // ];
+
     // Sample EC2 call.
     return await EC2.describeInstances().promise();
+};
+
+// Sample function used for integration testing against each ES2016/7 feature
+// purportedly supported by the boilerplate.
+const integrationTestExample = (data, context) => {
+    let value;
+
+    switch (data.function) {
+        case 'Object.values':
+            return Object.values(data.value);
+        case 'Object.entries':
+            return Object.entries(data.value);
+        case 'Array.prototype.includes':
+            return data.value.includes(data.value2);
+        case 'Exponentiation':
+            return data.value ** data.value2;
+        case 'Object spread properties':
+            const { value } = data;
+            return value;
+        case 'Object rest properties':
+            const { child, ...rest } = data.value;
+            return rest;
+    }
 };

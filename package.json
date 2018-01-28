@@ -1,7 +1,7 @@
 {
     "name": "es2017-lambda-boilerplate",
     "description": "An ES2017 boilerplate for AWS Lambda (Node.js 6.10)",
-    "version": "0.3.1",
+    "version": "0.4.0",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -14,6 +14,7 @@
         "babel-plugin-add-header-comment": "^1.0.3",
         "babel-plugin-array-includes": "^2.0.3",
         "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+        "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
         "babel-plugin-transform-es2017-object-entries": "0.0.4",
         "babel-plugin-transform-object-rest-spread": "^6.26.0",
         "babel-preset-env": "^1.6.1",
@@ -36,7 +37,7 @@
         "deploy": "npm run package && npm run deploy:run",
         "deploy:run": "babel-node ./bin/deploy.js",
         "package": "npm run build && npm run package:pack",
-        "package:pack": "rm -f artifact.zip && cd dist/ && zip -r ../artifact.zip *",
+        "package:pack": "rm -f artifact.zip && cd dist/ && zip -r ../artifact.zip * -x package.json package-lock.json",
         "spec": "npm run spec:snapshot && npm run spec:functional",
         "spec:snapshot": "jest spec/snapshot",
         "spec:functional": "jest spec/functional",

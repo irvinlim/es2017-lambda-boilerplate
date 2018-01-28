@@ -19,6 +19,7 @@
                 "commentEnd": "\n "
             }
         ],
+        "transform-es2015-modules-commonjs",
         "transform-es2017-object-entries",
         "transform-object-rest-spread",
         "transform-es2015-destructuring",
