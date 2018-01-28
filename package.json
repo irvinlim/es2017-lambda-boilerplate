@@ -36,7 +36,7 @@
         "deploy": "npm run package && npm run deploy:run",
         "deploy:run": "babel-node ./bin/deploy.js",
         "package": "npm run build && npm run package:pack",
-        "package:pack": "rm -f artifact.zip && cd dist/ && zip -r ../artifact.zip *",
+        "package:pack": "rm -f artifact.zip && cd dist/ && zip -r ../artifact.zip * -x package.json package-lock.json",
         "spec": "npm run spec:snapshot && npm run spec:functional",
         "spec:snapshot": "jest spec/snapshot",
         "spec:functional": "jest spec/functional",
