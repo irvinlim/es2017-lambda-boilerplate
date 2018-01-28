@@ -19,10 +19,12 @@ function run(event) {
             // Pass an event to the Lambda function.
             event,
             // Pass AWS credentials from environment.
-            addEnvVars: {
-                AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
-                AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
-            },
+            dockerArgs: [
+                '-e',
+                `AWS_ACCESS_KEY_ID=${process.env.AWS_ACCESS_KEY_ID}`,
+                '-e',
+                `AWS_SECRET_ACCESS_KEY=${process.env.AWS_SECRET_ACCESS_KEY}`,
+            ],
         });
     } catch (err) {
         // Throw errors back to test runner.
