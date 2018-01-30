@@ -13,17 +13,20 @@ import path from 'path';
 dotenv.config();
 
 function run(event) {
-    // Run the Lambda function.
-    let result;
-
     // Run the Lambda in Docker.
-    result = dockerLambda({
+    const result = dockerLambda({
         // Use the Node.js 6.10.0 image.
         dockerImage: 'lambci/lambda:nodejs6.10',
+
         // Bind the build directory as a volume to /var/task.
         taskDir: path.join(__dirname, '../dist'),
+
+        // Capture both stderr and stdout, instead of catching Errors.
+        returnSpawnResult: true,
+
         // Pass an event to the Lambda function.
         event,
+
         // Pass AWS credentials from environment.
         // NOTE: Jest needs the environment variable values explicitly,
         // see https://github.com/facebook/jest/issues/5362.
@@ -33,8 +36,6 @@ function run(event) {
             '-e',
             `AWS_SECRET_ACCESS_KEY=${process.env.AWS_SECRET_ACCESS_KEY}`,
         ],
-        // Capture both stderr and stdout, instead of catching Errors.
-        returnSpawnResult: true,
     });
 
     // Catch Lambda errors, based on spawn status codes/errors.
