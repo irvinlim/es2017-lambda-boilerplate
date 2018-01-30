@@ -7,6 +7,9 @@ const BLACKLISTED_GREPS = [
     /^REPORT RequestId: /,
 ];
 
+// Define the spliterator for syslog headers.
+const SYSLOG_HEADER_GREP = /\n?\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z\t[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\t/;
+
 /**
  * Returns an array of lines that were logged using console.log()
  * within an invocation of AWS Lambda, extracted from the system log.
@@ -20,22 +23,9 @@ function getSysLogLines(stderr) {
         .split('\n')
         .map(stripAnsi)
         .filter(line => BLACKLISTED_GREPS.every(grep => !grep.test(line)))
-        .map(removeSysLogHeaders);
-}
-
-/**
- * Strips headers from a line of raw system logs from AWS Lambda.
- * This removes the timestamp and the request ID, which are delimited
- * by tabs.
- *
- * @param {string} logLine Raw stderr system log line.
- * @returns {string} Log line without timestamps and request IDs.
- */
-function removeSysLogHeaders(logLine) {
-    return logLine
-        .split('\t')
-        .slice(2)
-        .join('\t');
+        .join('\n')
+        .split(SYSLOG_HEADER_GREP)
+        .filter(x => x && x.length);
 }
 
 /**
@@ -45,10 +35,10 @@ function removeSysLogHeaders(logLine) {
  * @param {string[]} messages Messages to be displayed.
  * @returns {string} Formatted console messages.
  */
-function formatLogForConsole(message) {
+function formatLogForConsole(messages) {
     const lines = [
         '\u001b[1;33mCaptured logs while executing Lambda function:\u001b[0m',
-        message,
+        ...messages,
     ];
 
     return lines.join('\n\n');
@@ -75,7 +65,6 @@ function formatLogForError(message, stderr) {
 
 module.exports = {
     getSysLogLines,
-    removeSysLogHeaders,
     formatLogForConsole,
     formatLogForError,
 };

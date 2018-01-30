@@ -1,9 +1,4 @@
-import {
-    formatLogForConsole,
-    formatLogForError,
-    getSysLogLines,
-    removeSysLogHeaders,
-} from './logs';
+import { formatLogForConsole, formatLogForError, getSysLogLines } from './logs';
 
 import dockerLambda from 'docker-lambda';
 import dotenv from 'dotenv';
