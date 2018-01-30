@@ -30,8 +30,9 @@ function run(event) {
         });
     } catch (err) {
         // Throw errors back to test runner.
-        console.error('Error while executing Lambda function: ', err.message);
-        throw err;
+        const { errorMessage } = JSON.parse(err.stdout);
+        const error = new Error(errorMessage);
+        throw error;
     }
 
     return result;
