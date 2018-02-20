@@ -43,17 +43,10 @@ const restApiExample = async (data, context) => {
 
 // Example function which invokes the AWS SDK, utilising `.promise()` for async/await.
 const awsSdkExample = async (data, context) => {
-    const EC2 = new AWS.EC2();
+    const Lambda = new AWS.Lambda({ region: 'ap-southeast-1' });
 
-    // return [
-    //     AWS.config.accessKeyId,
-    //     process.env.AWS_ACCESS_KEY_ID,
-    //     AWS.config.secretAccessKey,
-    //     process.env.AWS_SECRET_ACCESS_KEY,
-    // ];
-
-    // Sample EC2 call.
-    return await EC2.describeInstances().promise();
+    // Sample Lambda call.
+    return await Lambda.getFunction({ FunctionName: 'TestLambda' }).promise();
 };
 
 // Sample function used for integration testing against each ES2016/7 feature

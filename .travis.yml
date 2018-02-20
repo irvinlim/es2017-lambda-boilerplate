@@ -12,7 +12,12 @@ before_script:
 - greenkeeper-lockfile-update
 script:
 - npm run spec
-- npm run test
-- npm run deploy
+- if [[ "$TRAVIS_SECURE_ENV_VARS" = true ]]; then npm run test; fi # Only run tests if encrypted environment variables are available.
 after_script: 
 - greenkeeper-lockfile-upload
+deploy:
+  provider: script
+  script: npm run deploy
+  skip_cleanup: true
+  on:
+    branch: master
