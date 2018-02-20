@@ -1,7 +1,7 @@
 {
     "name": "es2017-lambda-boilerplate",
     "description": "An ES2017 boilerplate for AWS Lambda (Node.js 6.10)",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "license": "MIT",
     "repository": {
         "type": "git",
