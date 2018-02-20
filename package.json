@@ -35,7 +35,7 @@
         "build": "npm run build:init && npm run build:js && npm run build:install",
         "build:init": "rm -rf dist && mkdir dist",
         "build:js": "cd src && babel . -d ../dist",
-        "build:install": "cp package.json dist/ && cd dist && npm install --production",
+        "build:install": "cp package.json package-lock.json dist/ && cd dist && npm install --production",
         "deploy": "npm run package && npm run deploy:run",
         "deploy:run": "babel-node ./bin/deploy.js",
         "package": "npm run build && npm run package:pack",
@@ -47,7 +47,7 @@
         "test:build": "npm run test:build:init && npm run test:build:js && npm run test:build:install",
         "test:build:init": "cd test && rm -rf dist && mkdir dist",
         "test:build:js": "cd src && babel . -d ../test/dist",
-        "test:build:install": "cp package.json test/dist/ && cd test/dist && npm install --production",
+        "test:build:install": "cp package.json package-lock.json test/dist/ && cd test/dist && npm install --production",
         "test:run": "jest test/"
     },
     "dependencies": {
