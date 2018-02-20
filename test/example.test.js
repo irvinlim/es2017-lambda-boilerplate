@@ -27,5 +27,5 @@ it('should successfully call AWS SDK', function() {
     const result = run(event);
 
     expect(typeof result).toEqual('object');
-    expect(Array.isArray(result.Reservations)).toEqual(true);
+    expect(result.Configuration.FunctionName).toEqual('TestLambda');
 });
