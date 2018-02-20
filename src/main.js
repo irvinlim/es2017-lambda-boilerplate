@@ -45,13 +45,6 @@ const restApiExample = async (data, context) => {
 const awsSdkExample = async (data, context) => {
     const EC2 = new AWS.EC2();
 
-    // return [
-    //     AWS.config.accessKeyId,
-    //     process.env.AWS_ACCESS_KEY_ID,
-    //     AWS.config.secretAccessKey,
-    //     process.env.AWS_SECRET_ACCESS_KEY,
-    // ];
-
     // Sample EC2 call.
     return await EC2.describeInstances().promise();
 };
