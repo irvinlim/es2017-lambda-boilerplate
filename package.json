@@ -35,7 +35,7 @@
         "build": "npm run build:init && npm run build:js && npm run build:install",
         "build:init": "rm -rf dist && mkdir dist",
         "build:js": "cd src && babel . -d ../dist",
-        "build:install": "cp package.json dist/ && cd dist && npm install --production",
+        "build:install": "cp package.json package-lock.json dist/ && cd dist && npm install --production",
         "deploy": "npm run package && npm run deploy:run",
         "deploy:run": "babel-node ./bin/deploy.js",
         "package": "npm run build && npm run package:pack",
