@@ -19,7 +19,7 @@
         "babel-plugin-transform-object-rest-spread": "^6.26.0",
         "babel-preset-env": "^1.6.1",
         "colors": "^1.1.2",
-        "docker-lambda": "^0.13.4",
+        "docker-lambda": "^0.15.0",
         "dotenv": "^5.0.0",
         "fs-extra": "^5.0.0",
         "jest": "^22.0.0",
