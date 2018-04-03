@@ -4,6 +4,10 @@
 
 [![Travis CI](https://img.shields.io/travis/irvinlim/es2017-lambda-boilerplate/master.svg)](https://travis-ci.org/irvinlim/es2017-lambda-boilerplate) ![](https://codebuild.ap-southeast-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiNlhFcld3M3VSMFM0MEkzUlBMQk1FdDU1c1RGc2dnVlpNaDdFZHlzSnQydDVJNm9RVFhxbXA3NkYxK3QwUVd4eVZyUTRiejZ1UGhRTFJYMTJJSzNLT2ZBPSIsIml2UGFyYW1ldGVyU3BlYyI6ImRFMWxLcHo2LzJmb3YycGEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master) [![David](https://img.shields.io/david/irvinlim/es2017-lambda-boilerplate.svg)](https://david-dm.org/irvinlim/es2017-lambda-boilerplate) [![David](https://img.shields.io/david/dev/irvinlim/es2017-lambda-boilerplate.svg)](https://david-dm.org/irvinlim/es2017-lambda-boilerplate?type=dev) [![Greenkeeper badge](https://badges.greenkeeper.io/irvinlim/es2017-lambda-boilerplate.svg)](https://greenkeeper.io/) [![GitHub](https://img.shields.io/github/release/irvinlim/es2017-lambda-boilerplate.svg)](https://github.com/irvinlim/es2017-lambda-boilerplate/releases) [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg)](http://opensource.org/licenses/MIT)
 
+**Note**: As of April 2018, AWS has [announced support for Lambda functions on Node.js 8.10](https://aws.amazon.com/about-aws/whats-new/2018/04/aws-lambda-supports-nodejs/), which already supports all ES2018-2016 features added by this boilerplate (and more). You can however, still use this boilerplate on Node.js 8.10 to make use of the unit testing features.
+
+---
+
 This is a boilerplate for [AWS Lambda](https://aws.amazon.com/lambda/) Node.js 6.10.0 functions, which allows you to use the latest JavaScript [ES2016](http://2ality.com/2016/01/ecmascript-2016.html), [ES2017](http://2ality.com/2016/02/ecmascript-2017.html) and [ES2018](http://2ality.com/2017/02/ecmascript-2018.html) features. The boilerplate also allows you to test your function in a Docker container (thanks to [docker-lambda](https://github.com/lambci/docker-lambda)), and also includes common configurations for CI/CD, for both [Travis CI](https://travis-ci.org/) and [AWS CodeBuild](https://aws.amazon.com/codebuild/) + [AWS CloudFormation](https://aws.amazon.com/cloudformation/).
 
 ## Latest JavaScript features
@@ -56,8 +60,8 @@ The test runner used is [Jest](https://github.com/facebook/jest) (with [Jasmine]
 
 In order to ensure that the Babel configuration works and is following the spec, the boilerplate also runs several automated tests to catch any Babel misconfigurations.
 
-* **Functional testing**: Runs the relevant spec tests from [Test262](https://github.com/tc39/test262) (actual tests taken from [node.green](http://node.green/)) on [docker-lambda](https://github.com/lambci/docker-lambda) to mock the AWS Lambda environment
-* **Snapshot testing**: Unit testing strategy by storing snapshots of Babel-transformed source code and running unit tests against them
+*   **Functional testing**: Runs the relevant spec tests from [Test262](https://github.com/tc39/test262) (actual tests taken from [node.green](http://node.green/)) on [docker-lambda](https://github.com/lambci/docker-lambda) to mock the AWS Lambda environment
+*   **Snapshot testing**: Unit testing strategy by storing snapshots of Babel-transformed source code and running unit tests against them
 
 You can find the spec tests under `spec/functional` and `spec/snapshot` respectively.
 
@@ -83,10 +87,10 @@ To modify the build process, you can update the CodeBuild configuration file at 
 
 If you are new to AWS CI/CD tools, you can follow the official [AWS tutorial](http://docs.aws.amazon.com/lambda/latest/dg/build-pipeline.html) to set up a build pipeline using CodePipeline. Take note of the following:
 
-* Set up a S3 bucket for uploading CodeBuild artifacts to.
-    * If the CodeBuild build fails, you may need to set the `S3_BUCKET` environment variable within CodeBuild directly.
-* Ensure that the IAM roles have the necessary permissions to access required resources, including the S3 bucket.
-* The CloudFormation template filename under CodePipeline settings should be `template.yml`.
+*   Set up a S3 bucket for uploading CodeBuild artifacts to.
+    *   If the CodeBuild build fails, you may need to set the `S3_BUCKET` environment variable within CodeBuild directly.
+*   Ensure that the IAM roles have the necessary permissions to access required resources, including the S3 bucket.
+*   The CloudFormation template filename under CodePipeline settings should be `template.yml`.
 
 ## Using the AWS SDK
 
@@ -98,10 +102,10 @@ Also make sure that your function has Internet connectivity (i.e. not within a V
 
 If you plan to use the AWS SDK, either for deployment (using `npm run deploy`), or within your function itself, you need to pass the following environment variables:
 
-* `AWS_ACCESS_KEY_ID`: IAM user access key ID
-* `AWS_SECRET_ACCESS_KEY`: IAM user secret access key
-* `AWS_REGION`: AWS region where the Lambda function resides in (_required for SDK deployment only_)
-* `LAMBDA_FUNCTION_NAME`: Name or ARN of the Lambda function (_required for SDK deployment only_)
+*   `AWS_ACCESS_KEY_ID`: IAM user access key ID
+*   `AWS_SECRET_ACCESS_KEY`: IAM user secret access key
+*   `AWS_REGION`: AWS region where the Lambda function resides in (_required for SDK deployment only_)
+*   `LAMBDA_FUNCTION_NAME`: Name or ARN of the Lambda function (_required for SDK deployment only_)
 
 This will work if you store it in a `.env` file in the root of the project (see [dotenv](https://github.com/motdotla/dotenv)), or if you define it within Travis CI itself (see [Travis CI docs](https://docs.travis-ci.com/user/environment-variables/)).
 
@@ -109,7 +113,7 @@ This will work if you store it in a `.env` file in the root of the project (see 
 
 The minimum permissions required for the IAM user for SDK deployment are:
 
-* [`lambda:UpdateFunctionCode`](https://docs.aws.amazon.com/lambda/latest/dg/API_UpdateFunctionCode.html)
+*   [`lambda:UpdateFunctionCode`](https://docs.aws.amazon.com/lambda/latest/dg/API_UpdateFunctionCode.html)
 
 Remember to add more permissions as required if you need to access the SDK in your function.
 
