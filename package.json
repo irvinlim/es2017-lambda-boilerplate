@@ -11,6 +11,7 @@
         "aws-sdk": "^2.315.0",
         "babel-cli": "^6.24.1",
         "babel-core": "^6.26.3",
+        "babel-jest": "^23.6.0",
         "babel-plugin-add-header-comment": "^1.0.3",
         "babel-plugin-array-includes": "^2.0.3",
         "babel-plugin-transform-es2015-destructuring": "^6.23.0",
@@ -29,7 +30,10 @@
     "jest": {
         "testEnvironment": "node",
         "testRegex": "\\.test\\.js$",
-        "noStackTrace": true
+        "noStackTrace": true,
+        "transform": {
+            "^.+\\.js$": "babel-jest"
+        }
     },
     "scripts": {
         "build": "npm run build:init && npm run build:js && npm run build:install",
