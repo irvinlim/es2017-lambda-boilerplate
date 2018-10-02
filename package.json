@@ -22,7 +22,7 @@
         "colors": "^1.1.2",
         "docker-lambda": "^0.15.0",
         "dotenv": "^6.0.0",
-        "fs-extra": "^6.0.0",
+        "fs-extra": "^7.0.0",
         "jest": "^22.0.0",
         "rimraf": "^2.6.2",
         "strip-ansi": "^5.0.0"
