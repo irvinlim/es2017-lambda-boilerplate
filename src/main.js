@@ -37,6 +37,11 @@ const restApiExample = async (data, context) => {
         headers: { 'User-Agent': 'AWS Lambda' },
     };
 
+    // Use GitHub API token to bypass rate limits.
+    if (process.env.GH_TOKEN) {
+        options.headers.Authorization = `token ${process.env.GH_TOKEN}`;
+    }
+
     // Await the Promise.
     return await request(options);
 };
