@@ -30,6 +30,8 @@ function run(event) {
             `AWS_ACCESS_KEY_ID=${process.env.AWS_ACCESS_KEY_ID}`,
             '-e',
             `AWS_SECRET_ACCESS_KEY=${process.env.AWS_SECRET_ACCESS_KEY}`,
+            '-e',
+            `GH_TOKEN=${process.env.GH_TOKEN}`,
         ],
     });
 
