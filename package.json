@@ -8,7 +8,7 @@
         "url": "https://github.org/irvinlim/es2017-lambda-boilerplate"
     },
     "devDependencies": {
-        "aws-sdk": "^2.334.0",
+        "aws-sdk": "2.368.0",
         "babel-cli": "^6.24.1",
         "babel-core": "^6.26.3",
         "babel-jest": "^23.6.0",
